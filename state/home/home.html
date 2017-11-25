@@ -1,0 +1,111 @@
+<div class="home-container" ng-controller="HomeCtrl">
+    <div class="main-header">
+        <i class="fa fa-bars" ng-click="toggleLeft()"></i>
+        <div class="game-icon">
+            <i class="fa fa-gamepad"></i>
+        </div>
+        <div class="title">Games</div>
+        <i class="fa fa-search"></i>
+    </div>
+    <div class="menu-bar">
+        <div ng-click="selectedItem = 'categories'" ng-class="{'selected-item':selectedItem=='categories'}">categories</div>
+        <div ng-click="selectedItem = 'highlights'" ng-class="{'selected-item':selectedItem=='highlights'}">highlights</div>
+        <div ng-click="selectedItem = 'top'" ng-class="{'selected-item':selectedItem=='top'}">top</div>
+        <div ng-click="selectedItem = 'new'" ng-class="{'selected-item':selectedItem=='new'}">new</div>
+        <div ng-click="selectedItem = 'recommended'" ng-class="{'selected-item':selectedItem=='recommended'}">recommended</div>
+    </div>
+
+    <div class="swiper-header">
+        <ks-swiper-container initial-slide="0" loop="true" show-nav-buttons="false" slides-per-view="1" space-between="5" pagination-clickable="true" pagination-is-active="true" autoplay="3000">
+            <ks-swiper-slide class="swiper-slide">
+                <img class="slide-img" src="img/1.png">
+            </ks-swiper-slide>
+            <ks-swiper-slide class="swiper-slide">
+                <img class="slide-img" src="img/2.png">
+            </ks-swiper-slide>
+            <ks-swiper-slide class="swiper-slide">
+                <img class="slide-img" src="img/3.png">
+            </ks-swiper-slide>
+            <ks-swiper-slide class="swiper-slide">
+                <img class="slide-img" src="img/4.png">
+            </ks-swiper-slide>
+        </ks-swiper-container>
+    </div>
+
+    <div class="games-container" ng-if="games">
+        <div class="game-title">
+            Action and Adventure
+            <span class="more">MORE</span>
+        </div>
+        <ks-swiper-container initial-slide="0" loop="false" show-nav-buttons="false" slides-per-view="slidePerView" space-between="15" pagination-clickable="false">
+            <ks-swiper-slide class="swiper-slide" ng-repeat="game in games">
+                <div class="game-slide">
+                    <img ng-src="{{game.imageURL}}" class="game-img" />
+                    <div class="game-name" title="{{game.name}}">{{game.name}}</div>
+                    <div class="game-publish" title="{{game.publisher}}">{{game.publisher}}</div>
+                    <div class="game-rating">
+                        <i class="fa fa-star" ng-repeat="star in [1,2,3,4,5] track by $index" ng-class="{'selected-star':$index < game.rating}"></i>
+                    </div>
+                </div>
+            </ks-swiper-slide>
+        </ks-swiper-container>
+
+        <div class="game-title">
+            Casual Games
+            <span class="more">MORE</span>
+        </div>
+        <ks-swiper-container initial-slide="0" loop="false" show-nav-buttons="false" slides-per-view="slidePerView" space-between="15" pagination-clickable="false">
+            <ks-swiper-slide class="swiper-slide" ng-repeat="game in games">
+                <div class="game-slide">
+                    <img ng-src="{{game.imageURL}}" class="game-img" />
+                    <div class="game-name" title="{{game.name}}">{{game.name}}</div>
+                    <div class="game-publish" title="{{game.publisher}}">{{game.publisher}}</div>
+                    <div class="game-rating">
+                        <i class="fa fa-star" ng-repeat="star in [1,2,3,4,5] track by $index" ng-class="{'selected-star':$index < game.rating}"></i>
+                    </div>
+                </div>
+            </ks-swiper-slide>
+        </ks-swiper-container>
+
+        <div class="game-title">
+            Puzzles
+            <span class="more">MORE</span>
+        </div>
+        <ks-swiper-container initial-slide="0" loop="false" show-nav-buttons="false" slides-per-view="slidePerView" space-between="15" pagination-clickable="false">
+            <ks-swiper-slide class="swiper-slide" ng-repeat="game in games">
+                <div class="game-slide">
+                    <img ng-src="{{game.imageURL}}" class="game-img" />
+                    <div class="game-name" title="{{game.name}}">{{game.name}}</div>
+                    <div class="game-publish" title="{{game.publisher}}">{{game.publisher}}</div>
+                    <div class="game-rating">
+                        <i class="fa fa-star" ng-repeat="star in [1,2,3,4,5] track by $index" ng-class="{'selected-star':$index < game.rating}"></i>
+                    </div>
+                </div>
+            </ks-swiper-slide>
+        </ks-swiper-container>
+        <br/>
+    </div>
+
+    <md-sidenav class="md-sidenav-left"
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-md')"
+                md-whiteframe="4">
+        <md-content layout-padding>
+            <div>
+                <i class="fa fa-sign-in"></i> Login
+            </div>
+            <hr/>
+            <div ng-click="selectedItem = 'categories';closeSideMenu();" class="nav-item">Categories</div>
+            <div ng-click="selectedItem = 'highlights';closeSideMenu();" class="nav-item">Highlights</div>
+            <div ng-click="selectedItem = 'top';closeSideMenu();" class="nav-item">Top</div>
+            <div ng-click="selectedItem = 'new';closeSideMenu();" class="nav-item">New</div>
+            <div ng-click="selectedItem = 'recommended';closeSideMenu();" class="nav-item">Recommended</div>
+            <hr />
+            <div>
+                <i class="fa fa-question"></i> Help
+            </div>
+        </md-content>
+
+    </md-sidenav>
+
+</div>
